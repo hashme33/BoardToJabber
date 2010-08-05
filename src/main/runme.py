@@ -46,7 +46,7 @@ class MyBot(JabberBot):
                 return ""
     @botcmd
     def remove(self,mess,args):
-        """Unsubscribe from a thread"""
+        """Unsubscribe from a thread """
         if len(args)>=1:
             thread = args[0]
             try:
