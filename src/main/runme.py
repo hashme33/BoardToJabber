@@ -57,5 +57,5 @@ class MyBot(JabberBot):
             except:
                 return ""
 
-bot = MyBot("zololo11@jabber.ru","omnnomnom")
+bot = MyBot("bot_test@jabber.ru","12345")
 bot.serve_forever()
