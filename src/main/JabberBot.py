@@ -379,8 +379,8 @@ class JabberBot(object):
             usage = usage + '\n\nType help <command name> to get more info about that specific command.'
         else:
             description = ''
-            if args in self.commands:
-                usage = self.commands[args].__doc__ or 'undocumented'
+            if args[0] in self.commands:
+                usage = self.commands[args[0]].__doc__ or 'undocumented'
             else:
                 usage = 'That command is not defined.'
 
@@ -418,11 +418,15 @@ class JabberBot(object):
 
         while not self.__finished:
             try:
-                conn.Process(1)
+                self.connect().Process(1)
                 self.idle_proc()
             except KeyboardInterrupt:
                 self.log('bot stopped by user request. shutting down.')
                 break
+            except:
+                self.conn = None
+                self.connect()
+                pass
 
         self.shutdown()
 

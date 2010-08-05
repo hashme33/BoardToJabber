@@ -21,11 +21,13 @@ class MyBot(JabberBot):
         return True
     @botcmd
     def info(self,mess,args):
+        """Show all threads you are subscribed on"""
         (result,text) = self.watcher.GetSubscriptions(str(mess.getFrom()))
         return text
     @botcmd
     def add(self,mess,args):
-        """Subscribes you on a thread, usage:
+        """Subscribes you on a thread
+        usage:
     add thread-url [name]
     You can specify the name for this thread using name parameter"""
         if len(args)>=1:
@@ -44,6 +46,7 @@ class MyBot(JabberBot):
                 return ""
     @botcmd
     def remove(self,mess,args):
+        """Unsubscribe from a thread"""
         if len(args)>=1:
             thread = args[0]
             try:
