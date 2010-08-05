@@ -140,6 +140,7 @@ class ThreadKeeper(threading.Thread):
                     result = self.scheduler.GetResult(url)
                     if result == "404":
                         self.threadstates[url] = "DIED"
+                        self.scheduler.TotallyRemove(url)
                     elif result:
                         self._UpdateThread(url,result)
             time.sleep(self.cycle_length)

@@ -46,6 +46,16 @@ class Scheduler(threading.Thread):
                     del self._taskfreq[task]
                 else:
                     self._taskcount[task] = self._taskcount[task]-1
+    def TotallyRemove(self,task):
+        with self.taskLock:
+            if task in self._tasks:
+                with self.resultLock:
+                    try:
+                        del self._taskresult[task]
+                    except:
+                        pass
+                del self._tasks[task]
+                del self._taskfreq[task]
     def GetResult(self,task):
         with self.resultLock:
             if task in self._tasksresult:
